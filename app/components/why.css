@@ -1,0 +1,651 @@
+/* =========================================================
+   WHY SECTION
+   ========================================================= */
+
+/*
+    .why-box is the main container for the entire section.
+
+    We use CSS Grid here because we want two main columns:
+
+    LEFT  = Section title + description
+    RIGHT = The reason cards
+*/
+
+.why-box {
+    /* Prevents the section from becoming ridiculously wide
+       on large monitors. */
+    max-width: 1300px;
+
+    /* Centers the section horizontally. */
+    margin: 0 auto;
+
+    /* Space inside the section:
+       8rem = top/bottom
+       4rem = left/right */
+    padding: 8rem 4rem;
+
+    /*
+        Creates two columns.
+
+        0.8fr = smaller left column
+        1.2fr = larger right column
+
+        So the cards get more space than the heading.
+    */
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+
+    /* Space between the two columns. */
+    gap: 6rem;
+
+    /*
+        Makes both columns start from the top
+        instead of vertically centering them.
+    */
+    align-items: start;
+}
+
+
+/* =========================================================
+   LEFT SIDE
+   ========================================================= */
+
+/*
+    This contains:
+
+    WHY CREED
+    The Creed Difference
+    Description
+
+    position: sticky keeps this content visible while
+    the user scrolls through the cards.
+*/
+
+.why-title-box {
+    /* Places the children vertically. */
+    display: flex;
+
+    /* Stack children from top to bottom. */
+    flex-direction: column;
+
+    /* Space between children. */
+    gap: 1rem;
+
+    /*
+        The title stays visible while scrolling.
+
+        It stops 8rem from the top of the viewport.
+    */
+    position: sticky;
+    top: 8rem;
+}
+
+
+/* Small section label */
+
+.why-label {
+    /*
+        Monospace font gives the section label
+        a technical/editorial appearance.
+    */
+    font-family: "Courier New", Courier, monospace;
+
+    /* Small text. */
+    font-size: 1.2rem;
+
+    /*
+        Adds space between letters.
+        Useful for small uppercase labels.
+    */
+    letter-spacing: 0.2em;
+
+    /* Creed red. */
+    color: #EE211B;
+
+    /* Makes the label more visible. */
+    font-weight: 700;
+
+    /*
+        Prevents the label from becoming too close
+        to the heading.
+    */
+    margin-bottom: 0.5rem;
+}
+
+
+/* Main heading */
+
+.why-title {
+    font-family: "Courier New", Courier, monospace;
+
+    /*
+        clamp() means:
+
+        minimum = 2.2rem
+        preferred = 4vw
+        maximum = 3.5rem
+
+        So the heading automatically scales
+        depending on screen size.
+    */
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+
+    /* Keeps the heading compact vertically. */
+    line-height: 1.05;
+
+    /* Removes default h2 margin. */
+    margin: 0;
+
+    color: #1A1A1A;
+}
+
+
+/* Description underneath the heading */
+
+.why-description {
+    font-family: "Tektur", "Times New Roman", Times, serif;
+
+    font-size: 1.35rem;
+
+    /*
+        1.7 means the line height is 1.7 times
+        the font size.
+
+        This makes long paragraphs easier to read.
+    */
+    line-height: 1.5;
+
+    color: #334205;
+
+    /*
+        Prevents the paragraph from becoming
+        excessively wide.
+    */
+    max-width: 450px;
+
+    /* Removes default paragraph margin. */
+    margin: 0;
+}
+
+
+/* =========================================================
+   RIGHT SIDE
+   ========================================================= */
+
+/*
+    .why-grid contains all four cards.
+
+    We want the cards to appear vertically:
+
+    CARD 1
+    CARD 2
+    CARD 3
+    CARD 4
+*/
+
+.why-grid {
+    display: flex;
+
+    /* Stack the cards vertically. */
+    flex-direction: column;
+
+    /* Space between cards. */
+    gap: 1.5rem;
+}
+
+
+/* =========================================================
+   INDIVIDUAL CARD
+   ========================================================= */
+
+.why-item {
+    /*
+        Needed because the red glow (::before)
+        is positioned relative to this card.
+    */
+    position: relative;
+
+    /*
+        Places the video and text beside each other.
+
+        VIDEO | TEXT
+    */
+    display: flex;
+
+    /*
+        Vertically centers the video and text.
+    */
+    align-items: center;
+
+    /* Space between video and text. */
+    gap: 2rem;
+
+    /* Space inside the card. */
+    padding: 1.5rem;
+
+    /*
+        Gives every card a minimum height.
+
+        This prevents short content from making
+        some cards look much smaller than others.
+    */
+    min-height: 220px;
+
+    /* Dark card background. */
+    background: #111;
+
+    /* Subtle border. */
+    border: 1px solid #262626;
+
+    /* Rounded corners. */
+    border-radius: 18px;
+
+    /*
+        Anything extending outside the card gets hidden.
+
+        This is especially important for:
+        - video
+        - red glow
+        - hover effects
+    */
+    overflow: hidden;
+
+    /*
+        Makes hover changes smooth instead of instant.
+    */
+    transition:
+        transform 0.4s ease,
+        border-color 0.4s ease,
+        background-color 0.4s ease,
+        box-shadow 0.4s ease;
+}
+
+
+/* =========================================================
+   RED GLOW
+   ========================================================= */
+
+/*
+    ::before creates an invisible extra element
+    inside every card.
+
+    We use it to create a subtle red glow
+    when the card is hovered.
+*/
+
+.why-item::before {
+    /*
+        Required for a pseudo-element to appear.
+    */
+    content: "";
+
+    /*
+        Positioning allows us to place the glow
+        wherever we want inside the card.
+    */
+    position: absolute;
+
+    width: 250px;
+    height: 250px;
+
+    /*
+        Pushes the glow partly outside the left
+        side of the card.
+    */
+    left: -120px;
+
+    /* Starts vertically in the middle. */
+    top: 50%;
+
+    /*
+        Moves it upward by half its own height.
+
+        This effectively centers it vertically.
+    */
+    transform: translateY(-50%);
+
+    /*
+        Creates a soft circular red glow.
+
+        The center is red.
+        It gradually becomes transparent.
+    */
+    background: radial-gradient(
+        circle,
+        rgba(238, 33, 27, 0.12),
+        transparent 70%
+    );
+
+    /*
+        Invisible by default.
+    */
+    opacity: 0;
+
+    /* Makes the glow fade in smoothly. */
+    transition: opacity 0.4s ease;
+
+    /*
+        Prevents the glow from interfering
+        with mouse interaction.
+    */
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   CARD HOVER
+   ========================================================= */
+
+.why-item:hover {
+    /*
+        Moves the card slightly upward.
+
+        This creates the floating effect.
+    */
+    transform: translateY(-5px);
+
+    /*
+        Makes the border slightly red.
+    */
+    border-color: rgba(238, 33, 27, 0.45);
+
+    /* Slightly lighter background on hover. */
+    background: #151515;
+
+    /*
+        Creates a shadow underneath the card,
+        making it appear lifted.
+    */
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.3);
+}
+
+
+/*
+    When the card is hovered,
+    reveal the red glow.
+*/
+
+.why-item:hover::before {
+    opacity: 1;
+}
+
+
+/* =========================================================
+   VIDEO
+   ========================================================= */
+
+.why-item video {
+    /*
+        Fixed width and height prevent the video
+        from changing the card layout.
+    */
+    width: 140px;
+    height: 180px;
+
+    /*
+        Makes the video fill the box.
+
+        Without this, the video could be distorted
+        or leave empty space.
+    */
+    object-fit: cover;
+
+    /*
+        Prevents flexbox from shrinking the video
+        when the text needs more space.
+    */
+    flex-shrink: 0;
+
+    /* Rounded video corners. */
+    border-radius: 12px;
+
+    /*
+        Smooth hover animation.
+    */
+    transition:
+        transform 0.5s ease,
+        filter 0.5s ease;
+}
+
+
+/*
+    When the card is hovered,
+    slightly enlarge the video.
+*/
+
+.why-item:hover video {
+    transform: scale(1.04);
+
+    /*
+        Makes the video slightly brighter.
+    */
+    filter: brightness(1.1);
+}
+
+
+/* =========================================================
+   CARD TEXT
+   ========================================================= */
+
+.why-item-content {
+    /*
+        Stack heading and paragraph vertically.
+    */
+    display: flex;
+    flex-direction: column;
+
+    /* Space between heading and paragraph. */
+    gap: 0.8rem;
+
+    /*
+        Keeps the content above the decorative
+        red glow.
+    */
+    position: relative;
+    z-index: 1;
+}
+
+
+/* Card heading */
+
+.why-item-content h3 {
+    /* Remove browser's default heading margin. */
+    margin: 0;
+
+    /*
+        Responsive heading size.
+
+        minimum = 1.2rem
+        preferred = 2vw
+        maximum = 1.6rem
+    */
+    font-size: clamp(1.2rem, 2vw, 1.6rem);
+
+    /* Keeps multiple lines visually compact. */
+    line-height: 1.25;
+
+    color: #fff;
+}
+
+
+/* Card paragraph */
+
+.why-item-content p {
+    /* Remove default paragraph margin. */
+    margin: 0;
+
+    font-size: 0.95rem;
+
+    /*
+        Makes the paragraph easier to read.
+    */
+    line-height: 1.7;
+
+    color: #999;
+
+    /*
+        Stops the paragraph from becoming
+        ridiculously wide.
+    */
+    max-width: 600px;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+/*
+    At 1000px and below, two columns become
+    one column.
+
+    Instead of:
+
+    TITLE | CARDS
+
+    We get:
+
+    TITLE
+    CARDS
+*/
+
+@media (max-width: 1000px) {
+
+    .why-box {
+        /*
+            Change from two columns to one.
+        */
+        grid-template-columns: 1fr;
+
+        /* Reduce the gap because the layout is now vertical. */
+        gap: 4rem;
+
+        /* Reduce horizontal padding. */
+        padding: 6rem 2rem;
+    }
+
+
+    .why-title-box {
+        /*
+            Sticky positioning is no longer useful
+            because the title is above the cards.
+        */
+        position: static;
+
+        max-width: 700px;
+
+        /* Center the title block. */
+        margin: 0 auto;
+
+        text-align: center;
+    }
+
+
+    .why-description {
+        /*
+            Center the paragraph itself.
+        */
+        margin: 0 auto;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .why-box {
+        /*
+            Smaller spacing on small screens.
+        */
+        padding: 5rem 1.2rem;
+
+        /*
+            Remove unnecessary horizontal margin.
+        */
+        margin: 0;
+    }
+
+
+    .why-grid {
+        /*
+            Reduce space between cards.
+        */
+        gap: 1rem;
+    }
+
+
+    .why-item {
+        /*
+            Align the video and text to the top
+            instead of vertically centering them.
+
+            This works better when the paragraph
+            becomes several lines tall.
+        */
+        align-items: flex-start;
+
+        /* Smaller gap between video and text. */
+        gap: 1.2rem;
+
+        /* Smaller card padding. */
+        padding: 1rem;
+
+        /*
+            Allow the card height to be determined
+            naturally by its content.
+        */
+        min-height: auto;
+    }
+
+
+    /* Smaller video on mobile */
+
+    .why-item video {
+        width: 85px;
+        height: 120px;
+
+        border-radius: 9px;
+    }
+
+
+    /* Smaller gap between heading and paragraph */
+
+    .why-item-content {
+        gap: 0.5rem;
+    }
+
+
+    /* Smaller card heading */
+
+    .why-item-content h3 {
+        font-size: 1.05rem;
+    }
+
+
+    /* Smaller card description */
+
+    .why-item-content p {
+        font-size: 0.82rem;
+        line-height: 1.55;
+    }
+
+
+    /* Smaller main heading */
+
+    .why-title {
+        font-size: 2.3rem;
+    }
+
+
+    /* Smaller section description */
+
+    .why-description {
+        font-size: 1rem;
+    }
+
+}

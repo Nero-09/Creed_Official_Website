@@ -2,6 +2,9 @@
   padding-top: 10rem;
   margin: 4rem;
   display: flex;
+ /* justify-content: center; */
+  align-items: flex-start;
+  gap: 2rem;
 }
 
 .title {
@@ -15,15 +18,20 @@
   color: #EE211B;
 }
 
-.parallax {
+.floating-box {
   position: relative;
   width: 700px;
   height: 600px;
 }
 
 .computer {
-  width: 600px;
-  height: auto;
+  max-width: 550px;
+  width: 100%;
+  height: auto;button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
   position: absolute;
   top: 50%;
   left: 50%;
@@ -71,6 +79,54 @@ img.float-item {
   100% { transform: translate(0, 0) rotate(0deg); }
 }
 
+.hero-summary-box{
+  margin-top: 9rem;
+}
+
+.hero-summary-box p {
+  font-size: 1.1rem;
+  margin-bottom: 0.8rem;
+  line-height: 1.5;
+}
+
+ .highlights {
+  display: block;
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 1.5rem;
+}
+
+.links-hero {
+  display: inline-block;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.7rem 1.4rem;
+  border-radius: 8px;
+  margin-right: 1rem;
+  margin-top: 0.5rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.service-hero {
+  background-color: #EE211B;
+  color: #fff;
+}
+
+.contact-hero-home {
+  background-color: transparent;
+  border: 2px solid #EE211B;
+  color: #EE211B;
+}
+
+.links-hero:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(238, 33, 27, 0.25);
+  background-color: #D75B0A;
+  color: #1A1A1A;
+  transition: 300ms ease-in-out;
+}
+
+
 /* ---------- Everything below this line only applies on narrow screens.
    Nothing above was touched, so desktop (anything wider than 900px)
    looks exactly like your original. ---------- */
@@ -96,7 +152,7 @@ img.float-item {
     font-size: clamp(1.1rem, 3vw, 2rem);
   }
 
-  .parallax {
+  .floating-box {
     width: min(700px, 90vw);
     aspect-ratio: 700 / 600;
     height: auto;
@@ -104,17 +160,16 @@ img.float-item {
     margin-top: 2rem; /* extra clearance so the top icons don't sit flush against the text above */
   }
 
-  .computer {
-    width: 100%;
-    max-width: 600px;
-  }
-
   .float-item {
-    font-size: clamp(1.4rem, 4vw, 2.5rem);
+    font-size: clamp(2rem, 4vw, 2.5rem);
   }
 
   img.float-item {
-    width: clamp(45px, 10vw, 90px);
+    width: clamp(60px, 10vw, 90px);
+  }
+
+  .hero-summary-box{
+    margin-top: 0;
   }
 }
 
@@ -127,4 +182,9 @@ img.float-item {
   .float-item {
     animation-duration: 4s !important;
   }
+
+  .hero-summary-box{
+    margin-top: 0;
+  }
 }
+

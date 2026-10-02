@@ -6,9 +6,9 @@ function NavBar() {
 
   const links = [
     { href: '/', label: 'Home' },
-    { href: '/service', label: 'Services' },
-    { href: '/about', label: 'About Us' },
-    { href: '/contact', label: 'Contact' },
+    { href: '#services', label: 'Services' },
+    // { href: '#about', label: 'About Us' },
+    { href: '#contact', label: 'Contact' },
   ];
 
   // Lock page scroll while the menu is open
