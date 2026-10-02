@@ -3,8 +3,8 @@
 import NavBar from "../components/navBar";
 import Services from "./service";
 import Why from "../components/why";
-import FeaturedWork from "~/components/video";
 import Contact from "./contact";
+import Footer from "~/components/footer";
 
 
 import './home.css';
@@ -27,7 +27,7 @@ export default function Home() {
 
       <NavBar />
 
-      <section className="hero">
+      <section className="hero" id="hero">
         <div className="hero-text">
           <h1 className="title">CREED</h1>
           <p className="moto">Every Business Needs Creed.</p>
@@ -59,13 +59,8 @@ export default function Home() {
 
       <Services />
       <Why />
-      <FeaturedWork />
       <Contact />
-
-
-
-      
-
+      <Footer />
 
 
     </>

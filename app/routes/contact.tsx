@@ -1,67 +1,118 @@
 import "./contact.css";
+import { useEffect, useRef, useState, type KeyboardEvent, type MouseEvent } from "react";
 
 const members = [
-    {
-        name: "Member One",
-        role: "Creative Director",
-        image: "https://plus.unsplash.com/premium_photo-1689977927774-401b12d137d6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fG1hbnxlbnwwfHwwfHx8MA%3D%3D",
-    },
-    {
-        name: "Member Two",
-        role: "Web Developer",
-        image: "https://plus.unsplash.com/premium_photo-1689977927774-401b12d137d6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fG1hbnxlbnwwfHwwfHx8MA%3D%3D",
-    },
-    {
-        name: "Member Three",
-        role: "Marketing",
-        image: "https://plus.unsplash.com/premium_photo-1689977927774-401b12d137d6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fG1hbnxlbnwwfHwwfHx8MA%3D%3D",
-    },
-    {
-        name: "Member Four",
-        role: "Designer",
-        image: "https://plus.unsplash.com/premium_photo-1689977927774-401b12d137d6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fG1hbnxlbnwwfHwwfHx8MA%3D%3D",
-    },
+    { name: "Member One", role: "Creative Director", image: "https://plus.unsplash.com/premium_photo-1689977927774-401b12d137d6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fG1hbnxlbnwwfHwwfHx8MA%3D%3D" },
+    { name: "Member Two", role: "Web Developer", image: "https://plus.unsplash.com/premium_photo-1689977927774-401b12d137d6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fG1hbnxlbnwwfHwwfHx8MA%3D%3D" },
+    { name: "Member Three", role: "Marketing", image: "https://plus.unsplash.com/premium_photo-1689977927774-401b12d137d6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fG1hbnxlbnwwfHwwfHx8MA%3D%3D" },
+    { name: "Member Four", role: "Designer", image: "https://plus.unsplash.com/premium_photo-1689977927774-401b12d137d6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fG1hbnxlbnwwfHwwfHx8MA%3D%3D" },
 ];
 
 export default function Contact() {
+    const heroRef = useRef<HTMLDivElement>(null);
+    const videoRef = useRef<HTMLVideoElement>(null);
+    const notificationTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+    const [muted, setMuted] = useState(true);
+    const [notification, setNotification] = useState<{ x: number; y: number; message: string } | null>(null);
+
+    useEffect(() => () => {
+        if (notificationTimer.current) clearTimeout(notificationTimer.current);
+    }, []);
+
+    const toggleSound = (clientX: number, clientY: number) => {
+        const video = videoRef.current;
+        const hero = heroRef.current;
+        if (!video || !hero) return;
+
+        const nextMuted = !video.muted;
+        video.muted = nextMuted;
+        setMuted(nextMuted);
+
+        const bounds = hero.getBoundingClientRect();
+        setNotification({
+            x: Math.min(Math.max(clientX - bounds.left, 70), bounds.width - 70),
+            y: Math.min(Math.max(clientY - bounds.top, 32), bounds.height - 20),
+            message: nextMuted ? "Sound off" : "Sound on",
+        });
+
+        if (notificationTimer.current) clearTimeout(notificationTimer.current);
+        notificationTimer.current = setTimeout(() => setNotification(null), 1200);
+    };
+
+    const handleVideoClick = (event: MouseEvent<HTMLVideoElement>) => {
+        toggleSound(event.clientX, event.clientY);
+    };
+
+    const handleVideoKeyDown = (event: KeyboardEvent<HTMLVideoElement>) => {
+        if (event.key !== "Enter" && event.key !== " ") return;
+        event.preventDefault();
+        const bounds = event.currentTarget.getBoundingClientRect();
+        toggleSound(bounds.left + bounds.width / 2, bounds.top + bounds.height / 2);
+    };
+
     return (
         <section className="contact" id="contact">
 
             {/* =================================================
-                MAIN CONTACT / CTA
+                MAIN CONTACT / CTA — video background
             ================================================= */}
 
-            <div className="contact-hero">
+            <div className="contact-hero" ref={heroRef}>
 
-                {/* Small label */}
-                <span className="contact-label">
-                    HAVE A PROJECT?
-                </span>
+                <video
+                    ref={videoRef}
+                    className="contact-hero-bg"
+                    src="/dynamic.mp4"
+                    autoPlay
+                    muted={muted}
+                    loop
+                    playsInline
+                    role="button"
+                    tabIndex={0}
+                    aria-label={muted ? "Unmute background video" : "Mute background video"}
+                    onClick={handleVideoClick}
+                    onKeyDown={handleVideoKeyDown}
+                />
 
-                {/* Main heading */}
-                <h2>
-                    Let's build something
-                    <br />
-                    worth remembering.
-                </h2>
+                {notification && (
+                    <span
+                        className="contact-sound-notification"
+                        style={{ left: notification.x, top: notification.y }}
+                        aria-live="polite"
+                    >
+                        {notification.message}
+                    </span>
+                )}
 
-                {/* Supporting text */}
-                <p>
-                    Tell us what you're working on and let's
-                    figure out how Creed can help your business
-                    grow.
-                </p>
+                <div className="contact-hero-content">
 
-                {/* Main CTA */}
-                <a
-                    href="https://wa.me/9821859944"
-                    className="contact-button"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Start a Conversation
-                    <span>↗</span>
-                </a>
+                    <span className="contact-label">
+                        HAVE A PROJECT?
+                    </span>
+
+                    <h2>
+                        Let's build something
+                        <br />
+                        worth remembering.
+                    </h2>
+
+                    <p>
+                        Tell us what you're working on and let's
+                        figure out how Creed can help your business
+                        grow.
+                    </p>
+
+                    <a
+                        href="https://wa.me/9821859944"
+                        className="contact-button"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Start a Conversation
+                        <span>↗</span>
+                    </a>
+
+                </div>
 
             </div>
 
@@ -71,10 +122,6 @@ export default function Contact() {
             ================================================= */}
 
             <div className="contact-bottom">
-
-                {/* -------------------------
-                    CONTACT DETAILS
-                ------------------------- */}
 
                 <div className="contact-details">
 
@@ -89,20 +136,12 @@ export default function Contact() {
                             creed6626@gmail.com
                         </a>
 
-                        <a
-                            href="https://wa.me/9821859944"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
+                        <a href="https://wa.me/9821859944" target="_blank" rel="noopener noreferrer">
                             <span>WhatsApp</span>
                             +977 9821859944
                         </a>
 
-                        <a
-                            href="https://www.instagram.com/creed_marketing_studio"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
+                        <a href="https://www.instagram.com/creed_marketing_studio" target="_blank" rel="noopener noreferrer">
                             <span>Instagram</span>
                             @creed_marketing_studio
                         </a>
@@ -110,11 +149,6 @@ export default function Contact() {
                     </div>
 
                 </div>
-
-
-                {/* -------------------------
-                    TEAM
-                ------------------------- */}
 
                 <div className="team">
 
@@ -125,31 +159,13 @@ export default function Contact() {
                     <div className="team-grid">
 
                         {members.map((member) => (
-
-                            <div
-                                className="member"
-                                key={member.name}
-                            >
-
-                                <img
-                                    src={member.image}
-                                    alt={member.name}
-                                />
-
+                            <div className="member" key={member.name}>
+                                <img src={member.image} alt={member.name} />
                                 <div className="member-info">
-
-                                    <h3>
-                                        {member.name}
-                                    </h3>
-
-                                    <p>
-                                        {member.role}
-                                    </p>
-
+                                    <h3>{member.name}</h3>
+                                    <p>{member.role}</p>
                                 </div>
-
                             </div>
-
                         ))}
 
                     </div>
@@ -159,21 +175,8 @@ export default function Contact() {
             </div>
 
 
-            {/* =================================================
-                FOOTER
-            ================================================= */}
 
-            <div className="contact-footer">
 
-                <span>
-                    © {new Date().getFullYear()} Creed Marketing Studio
-                </span>
-
-                <span>
-                    Hetauda, Nepal
-                </span>
-
-            </div>
 
         </section>
     );

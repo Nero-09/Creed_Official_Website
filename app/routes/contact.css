@@ -2,68 +2,82 @@
    CONTACT SECTION
    ========================================================= */
 
-/*
-    This is the main container for the entire
-    contact section.
-
-    The section has three major parts:
-
-    1. Main CTA
-    2. Contact information + team
-    3. Small footer
-*/
-
 .contact {
-    /*
-        Dark background keeps the visual style
-        consistent with the rest of the website.
-    */
     background: #0D0D0D;
-
     color: #fff;
-
-    /*
-        Prevents anything from creating horizontal
-        scrolling.
-    */
     overflow: hidden;
 }
 
 
 /* =========================================================
-   MAIN CTA
+   MAIN CTA — VIDEO BACKGROUND
    ========================================================= */
 
-/*
-    This is the large section visitors see first.
-
-    It should be the visual focus of the contact section.
-*/
-
 .contact-hero {
-    /*
-        Limit the width of the content.
-
-        This prevents the heading from becoming
-        ridiculously wide on large monitors.
-    */
-    max-width: 1100px;
-
-    /*
-        Center the container horizontally.
-    */
-    margin: 0 auto;
-
-    /*
-        Large vertical spacing makes this feel
-        like the final major section of the page.
-    */
-    padding: 9rem 4rem 8rem;
-
-    /*
-        Center everything inside the CTA.
-    */
+    position: relative;
+    isolation: isolate;
+    min-height: 100svh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
+    padding: 2rem 4rem;
+}
+
+.contact-hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    filter: brightness(0.4);
+    cursor: pointer;
+}
+
+.contact-hero-bg:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: -6px;
+}
+
+.contact-sound-notification {
+    position: absolute;
+    z-index: 2;
+    padding: 0.45rem 0.75rem;
+    border-radius: 999px;
+    background: rgba(13, 13, 13, 0.88);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 600;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    animation: contact-sound-notification 1.2s ease both;
+}
+
+@keyframes contact-sound-notification {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -35%);
+    }
+
+    15%, 75% {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -65%);
+    }
+}
+
+.contact-hero-content {
+    position: relative;
+    max-width: 1100px;
+    color: #EE211B;
+    z-index: 1;
 }
 
 
@@ -72,28 +86,10 @@
    ========================================================= */
 
 .contact-label {
-    /*
-        Small monospace label gives the section
-        the same editorial/technical style used
-        elsewhere on the website.
-    */
     font-family: "Courier New", monospace;
-
     font-size: 0.75rem;
-
-    /*
-        Spreads the letters apart.
-    */
     letter-spacing: 0.2em;
-
     font-weight: 700;
-
-    /* color: #EE211B; */
-
-    /*
-        Creates space between the label and
-        the large heading.
-    */
     display: block;
     margin-bottom: 1.5rem;
 }
@@ -103,33 +99,12 @@
    MAIN HEADING
    ========================================================= */
 
-.contact-hero h2 {
-    /*
-        Remove the browser's default margin.
-    */
+.contact-hero-content h2 {
     margin: 0;
-
-    /*
-        clamp() makes the heading responsive.
-
-        2.5rem = minimum size
-        6vw    = preferred responsive size
-        5.5rem = maximum size
-    */
     font-size: clamp(2.5rem, 6vw, 5.5rem);
-
-    /*
-        Tight line spacing makes the heading
-        look more like a design element.
-    */
     line-height: 0.95;
-
-    /*
-        Slightly tighter letter spacing.
-    */
     letter-spacing: -0.04em;
-
-    color: #fff;
+    color: #CFCFCF;
 }
 
 
@@ -137,23 +112,12 @@
    SUPPORTING TEXT
    ========================================================= */
 
-.contact-hero p {
-    /*
-        Prevent the paragraph from becoming
-        too wide.
-    */
+.contact-hero-content p {
     max-width: 550px;
-
-    /*
-        Center it.
-    */
     margin: 2rem auto 2.5rem;
-
     font-size: 1rem;
-
     line-height: 1.7;
-
-    color: #999;
+    color: #CFCFCF;
 }
 
 
@@ -162,74 +126,25 @@
    ========================================================= */
 
 .contact-button {
-    /*
-        Makes the link behave like a button.
-    */
     display: inline-flex;
-
-    /*
-        Places the text and arrow next to each other.
-    */
     align-items: center;
-
-    /*
-        Space between text and arrow.
-    */
     gap: 0.8rem;
-
-    /*
-        Button padding.
-    */
     padding: 1rem 1.5rem;
-
-    /*
-        Creed red.
-    */
     background: #EE211B;
-
     color: #fff;
-
-    /*
-        Removes the default link underline.
-    */
     text-decoration: none;
-
-    /*
-        Slightly rounded corners.
-    */
     border-radius: 8px;
-
     font-size: 0.9rem;
-
     font-weight: 700;
-
-    /*
-        Smooth hover animation.
-    */
     transition:
         transform 0.3s ease,
         background-color 0.3s ease,
         gap 0.3s ease;
 }
 
-
-/*
-    Move the button slightly upward when
-    the mouse is over it.
-*/
-
 .contact-button:hover {
     transform: translateY(-4px);
-
-    /*
-        Slightly darker red.
-    */
     background: #d91d17;
-
-    /*
-        Move the arrow further away from
-        the text.
-    */
     gap: 1.1rem;
 }
 
@@ -238,52 +153,14 @@
    BOTTOM SECTION
    ========================================================= */
 
-/*
-    This area contains:
-
-    LEFT:
-    Contact information
-
-    RIGHT:
-    Four team members
-*/
-
 .contact-bottom {
-    /*
-        Keep the content aligned with the rest
-        of the website.
-    */
-    /* max-width: 1300px;
-
-    margin: 0 auto; */
     color: #1A1A1A;
-    /*
-        Horizontal spacing.
-    */
     padding: 4rem;
-
-    /*
-        Create two columns.
-    */
     display: grid;
-
-    /*
-        Contact information gets less space.
-        Team gets more space.
-    */
     grid-template-columns: 0.7fr 1.3fr;
     background-color: #CFCFCF;
-    margin: 0 0 0;
-
-    /*
-        Space between the columns.
-    */
+    margin: 0;
     gap: 6rem;
-
-    /*
-        Border separates the CTA from
-        the information below.
-    */
     border-top: 1px solid #262626;
 }
 
@@ -293,21 +170,12 @@
    ========================================================= */
 
 .contact-small-title {
-    /*
-        Small uppercase section label.
-    */
     display: block;
-
     font-family: "Courier New", monospace;
-
     font-size: 0.7rem;
-
     letter-spacing: 0.2em;
-
     font-weight: 700;
-
     color: #EE211B;
-
     margin-bottom: 2rem;
 }
 
@@ -317,70 +185,29 @@
    ========================================================= */
 
 .contact-links {
-    /*
-        Stack the contact links vertically.
-    */
     display: flex;
-
     flex-direction: column;
-
-    /*
-        Space between each contact method.
-    */
     gap: 1.5rem;
-    
 }
 
-
-/*
-    Individual contact link.
-*/
-
 .contact-links a {
-    /*
-        Stack label and actual contact value.
-    */
     display: flex;
-
     flex-direction: column;
     text-align: center;
-
     gap: 0.3rem;
-
     color: #1A1A1A;
-
-
     text-decoration: none;
-
     font-size: 1rem;
-
-    /*
-        Smooth color transition.
-    */
     transition: color 0.3s ease;
 }
 
-
-/*
-    "Email", "WhatsApp", "Instagram"
-*/
-
 .contact-links a span {
     font-family: "Courier New", monospace;
-
     font-size: 0.7rem;
-
     text-transform: uppercase;
-
     letter-spacing: 0.1em;
-
     color: #666;
 }
-
-
-/*
-    Hovering a contact link makes it Creed red.
-*/
 
 .contact-links a:hover {
     color: #EE211B;
@@ -392,166 +219,54 @@
    ========================================================= */
 
 .team {
-    /*
-        Nothing special is required here yet.
-
-        Keeping this as a separate container makes
-        the structure easier to understand.
-    */
     width: 100%;
-    
 }
 
-
-/* =========================================================
-   TEAM GRID
-   ========================================================= */
-
 .team-grid {
-    /*
-        Four members on desktop.
-
-        Each member gets one equal column.
-    */
     display: grid;
-
     grid-template-columns: repeat(4, 1fr);
-
     gap: 1rem;
 }
 
-
-/* =========================================================
-   MEMBER
-   ========================================================= */
-
 .member {
-    /*
-        Allows the image and information
-        to be controlled as one unit.
-    */
     min-width: 0;
 }
 
-
-/* =========================================================
-   MEMBER IMAGE
-   ========================================================= */
-
 .member img {
-    /*
-        Image takes the entire width
-        of its grid column.
-    */
     width: 100%;
-
-    /*
-        Gives the image a fixed visual ratio.
-    */
     aspect-ratio: 3 / 4;
-
-    /*
-        Prevents the image from becoming distorted.
-    */
     object-fit: cover;
-
-    /*
-        Slightly rounded corners.
-    */
     border-radius: 10px;
-
-    /*
-        Start slightly darker.
-    */
     filter: brightness(0.8);
-
-    /*
-        Smooth hover animation.
-    */
     transition:
         transform 0.4s ease,
         filter 0.4s ease;
 }
 
-
-/*
-    When hovering over a team member,
-    brighten and slightly enlarge the image.
-*/
-
 .member:hover img {
     transform: scale(1.03);
-
     filter: brightness(1);
 }
 
-
-/* =========================================================
-   MEMBER INFORMATION
-   ========================================================= */
-
 .member-info {
-    /*
-        Small space between image and text.
-    */
     padding-top: 0.8rem;
 }
 
-
-/* Member name */
-
 .member-info h3 {
     margin: 0;
-
     font-size: 0.95rem;
-
     font-weight: 600;
-
     color: #1A1A1A;
 }
 
-
-/* Member role */
-
 .member-info p {
     margin: 0.3rem 0 0;
-
     font-size: 0.75rem;
-
     color: #666;
 }
 
 
-/* =========================================================
-   FOOTER
-   ========================================================= */
 
-.contact-footer {
-    /*
-        Separate the footer from the content above.
-    */
-    max-width: 1300px;
-
-    margin: 0 auto;
-
-    padding: 1.5rem 4rem;
-
-    border-top: 1px solid #262626;
-
-    /*
-        Put copyright on the left and
-        location on the right.
-    */
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    font-size: 0.7rem;
-
-    color: #555;
-}
 
 
 /* =========================================================
@@ -559,42 +274,20 @@
    ========================================================= */
 
 @media (max-width: 1000px) {
-
-    /*
-        Reduce the large CTA spacing.
-    */
-
     .contact-hero {
-        padding: 7rem 2rem 6rem;
+        padding: 2rem;
     }
-
-
-    /*
-        Put contact information and team
-        into a single column.
-    */
 
     .contact-bottom {
         grid-template-columns: 1fr;
         gap: 4rem;
-
         padding: 3rem 2rem;
     }
-
-
-    /*
-        Still keep four members on one row
-        while there is enough screen width.
-    */
 
     .team-grid {
         grid-template-columns: repeat(4, 1fr);
     }
 
-
-    .contact-footer {
-        padding: 1.5rem 2rem;
-    }
 
 }
 
@@ -604,85 +297,30 @@
    ========================================================= */
 
 @media (max-width: 600px) {
-
-    /*
-        Smaller CTA spacing.
-    */
-
     .contact-hero {
-        padding: 6rem 1.2rem 5rem;
+        padding: 2rem 1.2rem;
+        min-height: 80svh;
     }
 
-
-    /*
-        Make the main heading slightly smaller.
-    */
-
-    .contact-hero h2 {
+    .contact-hero-content h2 {
         font-size: 2.7rem;
-
         line-height: 1;
     }
 
-
-    /*
-        Slightly smaller paragraph.
-    */
-
-    .contact-hero p {
+    .contact-hero-content p {
         font-size: 0.9rem;
     }
-
-
-    /*
-        Contact information gets less horizontal
-        padding on mobile.
-    */
 
     .contact-bottom {
         padding: 3rem 1.2rem;
     }
 
-
-    /*
-        Four people become two columns.
-
-        Instead of:
-
-        1 2 3 4
-
-        We get:
-
-        1 2
-        3 4
-    */
-
     .team-grid {
         grid-template-columns: repeat(2, 1fr);
-
         gap: 1.2rem;
     }
-
-
-    /*
-        Slightly larger member names on mobile
-        because there is more room vertically.
-    */
 
     .member-info h3 {
         font-size: 0.9rem;
     }
-
-
-    /*
-        Stack footer information on mobile.
-    */
-
-    .contact-footer {
-        padding: 1.2rem;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.5rem;
-    }
-
 }
