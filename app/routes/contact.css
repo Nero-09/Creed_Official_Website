@@ -253,10 +253,10 @@
         Keep the content aligned with the rest
         of the website.
     */
-    max-width: 1300px;
+    /* max-width: 1300px;
 
-    margin: 0 auto;
-
+    margin: 0 auto; */
+    color: #1A1A1A;
     /*
         Horizontal spacing.
     */
@@ -272,6 +272,8 @@
         Team gets more space.
     */
     grid-template-columns: 0.7fr 1.3fr;
+    background-color: #CFCFCF;
+    margin: 0 0 0;
 
     /*
         Space between the columns.
@@ -326,6 +328,7 @@
         Space between each contact method.
     */
     gap: 1.5rem;
+    
 }
 
 
@@ -344,7 +347,8 @@
 
     gap: 0.3rem;
 
-    color: #fff;
+    color: #1A1A1A;
+
 
     text-decoration: none;
 
@@ -395,6 +399,7 @@
         the structure easier to understand.
     */
     width: 100%;
+    
 }
 
 
@@ -502,7 +507,7 @@
 
     font-weight: 600;
 
-    color: #fff;
+    color: #1A1A1A;
 }
 
 
