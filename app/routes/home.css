@@ -27,7 +27,9 @@
 .computer {
   max-width: 550px;
   width: 100%;
-  height: auto;button {
+  height: auto; 
+  animation: float-computer 5.2s ease-in-out infinite 0.8s;
+  button {
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -36,6 +38,14 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+@keyframes float-computer {
+  0%   { transform: translate(-50%, -50%) translate(0, 0) rotate(0deg); }
+  25%  { transform: translate(-50%, -50%) translate(4px, -14px) rotate(3deg); }
+  50%  { transform: translate(-50%, -50%) translate(0, -22px) rotate(0deg); }
+  75%  { transform: translate(-50%, -50%) translate(-4px, -10px) rotate(-3deg); }
+  100% { transform: translate(-50%, -50%) translate(0, 0) rotate(0deg); }
 }
 
 .float-item {

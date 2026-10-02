@@ -6,24 +6,29 @@ const reasons = [
         title: "One Agency. Every Marketing Need Covered.",
         description:
             "Most small businesses in Nepal end up hiring separate freelancers for branding, web design, and social media, losing time, consistency, and money in the process. Creed solves this with one dedicated team covering branding, website development, and social media marketing under transparent, upfront pricing.",
+        video: "doodle-5.mp4",
+        
     },
     {
         number: "02",
         title: "Built for the Local Market.",
         description:
             "Creed is a Hetauda-based digital marketing agency built around the needs of local businesses. We understand the market, the customers, and the practical challenges businesses face when building their digital presence.",
+        video: "doodle-2.mp4",
     },
     {
         number: "03",
         title: "Strategy Meets Creativity.",
         description:
             "Good design gets attention, but good strategy gives that attention a purpose. Creed combines creative design with practical marketing strategies to help businesses communicate clearly and reach the right audience.",
+        video: "doodle-3.mp4",
     },
     {
         number: "04",
         title: "Built Around Your Growth.",
         description:
             "Every business is at a different stage. Instead of forcing every client into the same solution, Creed builds its services around where your business is now and where you want it to go.",
+        video: "doodle-4.mp4",
     },
 ];
 
@@ -66,7 +71,7 @@ export default function Why() {
 
                         {/* VIDEO */}
                         <video
-                            src="https://moneyincheck.org/video/doodle-4.mp4"
+                            src={`/${reason.video}`}
                             autoPlay
                             muted
                             loop
