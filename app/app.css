@@ -1,0 +1,31 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Playfair Display', serif;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #CFCFCF;
+    color: #1A1A1A;
+}
+
+
+/* GRADUURNT: #FFFFFF, #888888 */
+
+
+/* Role	Color	Hex
+Background	Light warm gray	
+#F2F1EF
+Primary text	Near-black	
+#1A1A1A
+Secondary text	Mid gray	
+#6B6B6B
+Accent (CTA, highlights)	Your yellow	
+#FFD700
+Accent alt (buttons, dark elements)	Deep black	
+#0D0D0D
+Card/panel background	White	
+#FFFFFF
+Border/divider	Soft gray	
+#E0DED9 */
