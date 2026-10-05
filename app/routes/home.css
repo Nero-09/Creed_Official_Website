@@ -25,7 +25,7 @@
 }
 
 .computer {
-  max-width: 550px;
+  max-width: 400px;
   width: 100%;
   height: auto; 
   animation: float-computer 5.2s ease-in-out infinite 0.8s;
@@ -42,9 +42,9 @@
 
 @keyframes float-computer {
   0%   { transform: translate(-50%, -50%) translate(0, 0) rotate(0deg); }
-  25%  { transform: translate(-50%, -50%) translate(4px, -14px) rotate(3deg); }
-  50%  { transform: translate(-50%, -50%) translate(0, -22px) rotate(0deg); }
-  75%  { transform: translate(-50%, -50%) translate(-4px, -10px) rotate(-3deg); }
+  25%  { transform: translate(-50%, -50%) translate(1px, -3px) rotate(3deg); }
+  50%  { transform: translate(-50%, -50%) translate(0, -3px) rotate(0deg); }
+  75%  { transform: translate(-50%, -50%) translate(-1px, -3px) rotate(-3deg); }
   100% { transform: translate(-50%, -50%) translate(0, 0) rotate(0deg); }
 }
 
@@ -59,12 +59,12 @@ img.float-item {
   font-size: initial;
 }
 
-.pos-envelope   { top: 1%;  left: 70%; animation: float-a 4.5s ease-in-out infinite; }
-.pos-facebook   { top: 1%;  left: 30%; animation: float-b 5s   ease-in-out infinite 0.3s; }
-.pos-whatsapp   { top: 18%; left: 20%; animation: float-c 4s   ease-in-out infinite 0.6s; }
-.pos-instagram  { top: 40%; left: 15%; animation: float-a 4.8s ease-in-out infinite 1s; }
-.pos-twitter    { top: 60%; left: 10%; animation: float-b 4.3s ease-in-out infinite 1.4s; }
-.pos-tiktok     { top: 50%; left: 90%; animation: float-c 5.2s ease-in-out infinite 0.8s; }
+.pos-envelope   { top: 10%;  left: 70%; animation: float-a 4.5s ease-in-out infinite; }
+.pos-facebook   { top: 10%;  left: 35%; animation: float-b 5s   ease-in-out infinite 0.3s; }
+.pos-whatsapp   { top: 30%; left: 25%; animation: float-c 4s   ease-in-out infinite 0.6s; }
+.pos-instagram  { top: 50%; left: 20%; animation: float-a 4.8s ease-in-out infinite 1s; }
+/* .pos-twitter    { top: 70%; left: 10%; animation: float-b 4.3s ease-in-out infinite 1.4s; } */
+.pos-tiktok     { top: 30%; left: 80%; animation: float-c 5.2s ease-in-out infinite 0.8s; }
 
 @keyframes float-a {
   0%   { transform: translate(0, 0) rotate(0deg); }
@@ -196,5 +196,26 @@ img.float-item {
   .hero-summary-box{
     margin-top: 0;
   }
+
+  .computer{
+    max-width: 240px;
+  }
+  
+  @keyframes float-computer {
+    0%   { transform: translate(-50%, -50%) translate(0, 0) rotate(0deg); }
+    25%  { transform: translate(-50%, -50%) translate(4px, -14px) rotate(3deg); }
+    50%  { transform: translate(-50%, -50%) translate(0, -22px) rotate(0deg); }
+    75%  { transform: translate(-50%, -50%) translate(-4px, -10px) rotate(-3deg); }
+    100% { transform: translate(-50%, -50%) translate(0, 0) rotate(0deg); }
+  }
+
+  .pos-envelope   { top: 1%;  left: 70%; animation: float-a 4.5s ease-in-out infinite; }
+  .pos-facebook   { top: 1%;  left: 30%; animation: float-b 5s   ease-in-out infinite 0.3s; }
+  .pos-whatsapp   { top: 18%; left: 20%; animation: float-c 4s   ease-in-out infinite 0.6s; }
+  .pos-instagram  { top: 40%; left: 15%; animation: float-a 4.8s ease-in-out infinite 1s; }
+  .pos-twitter    { top: 60%; left: 10%; animation: float-b 4.3s ease-in-out infinite 1.4s; }
+  .pos-tiktok     { top: 50%; left: 90%; animation: float-c 5.2s ease-in-out infinite 0.8s; }
+
+
 }
 

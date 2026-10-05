@@ -43,9 +43,9 @@ export default function Services() {
         <div className="services-heading">
           <span>WHAT WE DO</span>
           <h2>
-            Creative solutions.
+            {/* Creative solutions. */}Your business. Our creativity.
             <br />
-            Meaningful impact.
+            {/* Meaningful impact. */}
           </h2>
           <p>
             Everything your brand needs to stand out, connect, and grow, built for businesses in Nepal and beyond.

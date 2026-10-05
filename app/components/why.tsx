@@ -5,15 +5,15 @@ const reasons = [
         number: "01",
         title: "One Agency. Every Marketing Need Covered.",
         description:
-            "Most small businesses in Nepal end up hiring separate freelancers for branding, web design, and social media, losing time, consistency, and money in the process. Creed solves this with one dedicated team covering branding, website development, and social media marketing under transparent, upfront pricing.",
+            "No more juggling multiple freelancers, Creed solves this with one dedicated team covering branding, website development, and social media marketing under transparent, upfront pricing.",
         video: "doodle-5.mp4",
         
     },
     {
         number: "02",
-        title: "Built for the Local Market.",
+        title: "Earned, Not given.",
         description:
-            "Creed is a Hetauda-based digital marketing agency built around the needs of local businesses. We understand the market, the customers, and the practical challenges businesses face when building their digital presence.",
+            "We built Creed from the ground up, without shortcuts or inherited advantages. That means every client gets our full effort, every time because we understand that trust and results have to be earned, not assumed..",
         video: "doodle-2.mp4",
     },
     {

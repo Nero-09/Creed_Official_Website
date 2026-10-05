@@ -4,18 +4,18 @@ import { useEffect, useRef, useState, type KeyboardEvent, type MouseEvent } from
 const members = [
     {   name: "Vos",
         role: "Creative Director & SEO strategist", 
-        image: "https://plus.unsplash.com/premium_photo-1689977927774-401b12d137d6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fG1hbnxlbnwwfHwwfHx8MA%3D%3D",
+        image: "https://i.pinimg.com/736x/05/78/16/05781612d2cbadf5e423cd0cef59b4f1.jpg",
     },
     {   name: "Joel", role: "Web Developer", 
-        image: "https://plus.unsplash.com/premium_photo-1689977927774-401b12d137d6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fG1hbnxlbnwwfHwwfHx8MA%3D%3D",
+        image: "https://images.unsplash.com/photo-1580920790557-43158492adb5?w=500&auto=format&fit=crop&q=90&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTJ8fHVua25vd258ZW58MHx8MHx8fDA%3D",
     },
     {   name: "Peter", 
         role: "Photography/Videography", 
-        image: "https://plus.unsplash.com/premium_photo-1689977927774-401b12d137d6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fG1hbnxlbnwwfHwwfHx8MA%3D%3D",
+        image: "santosh.png",
     },
     {   name: "Indra", 
         role: "Content Strategist", 
-        image: "https://plus.unsplash.com/premium_photo-1689977927774-401b12d137d6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fG1hbnxlbnwwfHwwfHx8MA%3D%3D",
+        image: "/indra.png",
     }
 ];
 
@@ -134,6 +134,30 @@ export default function Contact() {
 
             <div className="contact-bottom">
 
+                
+
+                <div className="team">
+
+                    <span className="contact-small-title">
+                        THE TEAM
+                    </span>
+
+                    <div className="team-grid">
+
+                        {members.map((member) => (
+                            <div className="member" key={member.name}>
+                                <img src={member.image} alt={member.name} />
+                                <div className="member-info">
+                                    <h3>{member.name}</h3>
+                                    <p>{member.role}</p>
+                                </div>
+                            </div>
+                        ))}
+
+                    </div>
+
+                </div>
+
                 <div className="contact-details">
 
                     <span className="contact-small-title">
@@ -156,28 +180,6 @@ export default function Contact() {
                             <span>Instagram</span>
                             @creed_marketing_studio
                         </a>
-
-                    </div>
-
-                </div>
-
-                <div className="team">
-
-                    <span className="contact-small-title">
-                        THE TEAM
-                    </span>
-
-                    <div className="team-grid">
-
-                        {members.map((member) => (
-                            <div className="member" key={member.name}>
-                                <img src={member.image} alt={member.name} />
-                                <div className="member-info">
-                                    <h3>{member.name}</h3>
-                                    <p>{member.role}</p>
-                                </div>
-                            </div>
-                        ))}
 
                     </div>
 
