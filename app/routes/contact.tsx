@@ -176,10 +176,10 @@ export default function Contact() {
                             +977 9821859944
                         </a>
 
-                        <a href="https://www.instagram.com/creed_marketing_studio" target="_blank" rel="noopener noreferrer">
+                        {/* <a href="https://www.instagram.com/creed_marketing_studio" target="_blank" rel="noopener noreferrer">
                             <span>Instagram</span>
                             @creed_marketing_studio
-                        </a>
+                        </a> */}
 
                     </div>
 
